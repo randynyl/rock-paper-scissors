@@ -71,10 +71,24 @@
             }
         }
 
-        let computerSelection = computerPlay();
-        let playerSelection = 'rock';
-        console.log(playRound(playerSelection, computerSelection));
+        function game() {
+            let playerPoints = 0
+            for (let i = 0; i < 5; i++) {
+                console.log(`Round ${i}!`)
+                let computerSelection = computerPlay();
+                let playerSelection = prompt("What will you play?");
+                playerPoints += playRound(playerSelection, computerSelection);
+            }
+            if (playerPoints > 0) {
+                console.log("Game has ended. You win overall!");
+            } else if (playerPoints < 0) {
+                console.log("Game has ended. You lose overall!");
+            } else {
+                console.log("Game has ended. It is a tie overall!");
+            }
+        }
 
+        game();
 
     </script>
 </body>
