@@ -30,29 +30,29 @@
             switch (playerSelection) {
                 case 'Scissors':
                     if (computerSelection === 'Paper') {
-                        return 1;
+                        return ROUND_WON;
                     } else if (computerSelection === 'Scissors') {
-                        return 0;
+                        return ROUND_DRAW;
                     } else {
-                        return -1;
+                        return ROUND_LOST;
                     }
                     break;
                 case 'Paper':
                     if (computerSelection === 'Rock') {
-                        return 1;
+                        return ROUND_WON;
                     } else if (computerSelection === 'Paper') {
-                        return 0;
+                        return ROUND_DRAW;
                     } else {
-                        return -1;
+                        return ROUND_LOST;
                     }
                     break;
                 case 'Rock':
                     if (computerSelection === 'Scissors') {
-                        return 1;
+                        return ROUND_WON;
                     } else if (computerSelection === 'Rock') {
-                        return 0;
+                        return ROUND_DRAW;
                     } else {
-                        return -1;
+                        return ROUND_LOST;
                     }
                     break;
 
@@ -60,13 +60,13 @@
         }
 
         function displayRoundOutcomeMessage(playerSelection, computerSelection, roundOutcome) {
-            if (roundOutcome === 1) {
+            if (roundOutcome === ROUND_WON) {
                 console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
             }
-            if (roundOutcome === 0) {
+            if (roundOutcome === ROUND_DRAW) {
                 console.log(`Draw! ${playerSelection} ties ${computerSelection}`);
             }
-            if (roundOutcome === -1) {
+            if (roundOutcome === ROUND_LOST) {
                 console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
             }
         }
