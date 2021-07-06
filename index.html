@@ -5,12 +5,24 @@
   <title>Rock-Paper-Scissors</title>
   <meta name="description" content="My Page Description">
   <style>
-      .container{
+      body {
+        text-align: center;
+        font-family: cursive;
+      }
+      h1 {
+          font-style: italic;
+      }
+      
+      #roundNum {
+          font-size: large;
+      }
+      .container {
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
         flex-wrap: wrap;
+        row-gap: 20px;
       }
 
       .break {
@@ -18,11 +30,13 @@
           height: 0;
       }
 
+
   </style>
 </head>
 <body>
+    <h1>Rock Paper Scissors</h1>
     <div class="container">
-        <div>Round 1</div>
+        <div id="roundNum">Round 1</div>
         <div class="break"></div>
         <div>What will you play?</div>
         <div class="break"></div>
@@ -37,6 +51,16 @@
                 Scissors
             </button>
         </div>
+        <div class="break"></div>
+        <div>
+            <span>Your move: </span><span id="playerChoice"></span>
+        </div>
+        <div>
+            <span>Computer's move: </span><span id="computerChoice"></span>
+        </div>
+        <div class="break"></div>
+        <div id="playerScore">Your Score: 0</div>
+        <div id="computerScore">Computer's Score: 0</div>
     </div>
     <script>
         const ROUND_WON = 1;
@@ -110,6 +134,7 @@
             let playerSelection = "";
             let roundCount = 1;
 
+            
 
             const buttons = document.querySelectorAll('button');
             buttons.forEach((button) => {
@@ -124,9 +149,14 @@
                     } else if (roundResult == ROUND_LOST) {
                         computerPoints += 1;
                     }
+                    document.getElementById("playerChoice").innerHTML = playerSelection;
+                    document.getElementById("computerChoice").innerHTML = computerSelection;
                     roundCount += 1;
+                    document.getElementById("roundNum").innerHTML = `Round ${roundCount}`;
                     console.log('Player\'s points: ' + playerPoints);
+                    document.getElementById("playerScore").innerHTML = `Your Score: ${playerPoints}`;
                     console.log('Computer\'s points: ' + computerPoints);
+                    document.getElementById("computerScore").innerHTML = `Computer's Score: ${computerPoints}`;
                     if (playerPoints == 5 || computerPoints == 5) {
                         endGame(playerPoints, computerPoints);
                     }
@@ -135,12 +165,24 @@
         }
 
         function endGame(playerPoints, computerPoints) {
+            const container = document.querySelector('.container');
+            const endMessage = document.createElement('div');
+            const lineBreak = document.createElement('div');
+            const resultMessage = document.createElement('div');
+            endMessage.textContent = 'Game ends!'
             console.log('Game ends!');
             if (playerPoints > computerPoints) {
+                resultMessage.textContent = 'You win!'
                 console.log('You win!');
             } else {
+                resultMessage.textContent = 'Computer wins!'
                 console.log('Computer wins!');
             }
+            lineBreak.classList.add('break');
+            container.appendChild(lineBreak.cloneNode(true));
+            container.appendChild(endMessage);
+            container.appendChild(lineBreak.cloneNode(true));
+            container.appendChild(resultMessage);
         }
 
 
